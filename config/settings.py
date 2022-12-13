@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "markdownify.apps.MarkdownifyConfig",
+    "social_django",
     "mainapp",
     "authapp",
 ]
@@ -69,6 +70,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "mainapp.context_processors.example.simple_context_processor",
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -112,6 +115,14 @@ LOGIN_REDIRECT_URL = "mainapp:main_page"
 LOGOUT_REDIRECT_URL = "mainapp:main_page"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+AUTHENTICATION_BACKENDS = (
+    "social_core.backends.github.GithubOAuth2",
+    "django.contrib.auth.backends.ModelBackend",
+)
+
+SOCIAL_AUTH_GITHUB_KEY = "b7090a0d14a4e5b95d38"
+SOCIAL_AUTH_GITHUB_SECRET = "a4afb8f12aec31a0dcab9b69a9a2f9491880662b"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
