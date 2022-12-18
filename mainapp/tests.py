@@ -112,9 +112,7 @@ class TestTaskMailSend(TestCase):
     def test_mail_send(self):
         message_text = "test_message_text"
         user_obj = authapp_models.CustomUser.objects.first()
-        mainapp_task
-        +
-        .send_feedback_mail({"user_id": user_obj.id, "message": message_text})
+        mainapp_tasks.send_feedback_mail({"user_id": user_obj.id, "message": message_text})
         self.assertEqual(django_mail.outbox[0].body, message_text)
 
 
